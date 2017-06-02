@@ -16,8 +16,11 @@
 	    
 	<!-- Hacerlo PopUp Añadir ruta --><section>
 		<button id="nuevo">Añadir nuevo</button>
-		<section id="nuevo_articulo" class="ocultar">
-			<label>ID: <input type="text" name="id"/></label>	<!-- Ocultar al añadir-->	
+			<div class="overlay-container">
+		<div class="window-container zoomin">
+		<section id="nuevo_articulo">
+		
+			<label id="id">ID: <input type="text" name="id" readOnly="true"/></label>	<!-- Ocultar al añadir-->	
 			<label>Nombre: <input type="text" name="nombre"/></label>
 			<label>Kilometros: <input type="text" name="kilometros"/></label>
 			<label>Minutos: <input type="number" name="minutos"/></label>
@@ -31,7 +34,7 @@
 				<option value="Gargantilla">Gargantilla</option>
 				<option value="La Garganta">La Garganta</option>
 			</select></label>
-			<label>Consejos: <textarea name="consejos" cols=15 rows=15></textarea></label>
+			<label>Consejos: <textarea name="consejos" cols=50 rows=10></textarea></label>
 			<label>Dificultad: <select name="dificultad" id="dificultad">
 				<option value="Baja">Baja</option>
 				<option value="Media">Media</option>
@@ -39,27 +42,34 @@
 			</select></label>
 			<label>Numero de reservas : <input type="number" name="maximo"/></label>
 			<label>Mapa: <input type="text" name="mapa"/></label>
-			<label>Dirección PDF: <input type="text" name="pdf"/></label><!-- Ocultar al añadir-->				
-			<label>Dir. img: <input type="text" name="dir_img"/></label><!-- Ocultar al añadir-->	
-			<label>Valoracion: <input type="text" name="valoracion"/><label><!-- Ocultar al añadir -->
+			<label id="pdf">Dirección PDF: <input type="text" name="pdf"/></label><!-- Ocultar al añadir-->	
+			<label id="valora">Valoracion: <input type="number" name="valoracion"></label><!-- Ocultar al añadir -->
 			<form enctype="multipart/form-data" class="formulario">
-			<label>Subir imagen</label>
-				<input name="archivo" type="file" id="imagen" />
-				<input type="button" value="Registrar" id="registrar"/>
-				<input type="button" value="Modificar" id="actualizar"/>
+			<label>Subir PDF</label>
+			<input name="archivo" type="file" id="imagen"/>
+			<input type="button" value="Registrar" id="registrar"/>
+			<input type="button" value="Modificar" id="actualizar"/>
 			</form>			
-			<p id="mensaje"></p><br>
-			<button id="oculto">Ocultar</button>
+			
+			<button id="cerrar">Cerrar</button>
+			
 		</section>		
 	</section >
-	<!-- fin de popup -->
-		
-	<!-- popup modificar articulo -->
-
-	<!-- fin popup -->
+	</div>			
+	</div>	
+	<!-- fin de popup -->		
+	
 		<section id="mostrar_rutas">
 			
 			<p id="mensaje2"></p><br>
 		</section>
+		<div class="overlay-container3">
+		<div class="window-container3 zoomin">
+			<div id="mensaje">
+				<p id="alerta"></p>
+			</div>
+			<span id="close3" class="button reserva">Cerrar</span>
+		</div>			
+	</div>	
 	</body>
 </html>

@@ -45,7 +45,7 @@
 		}
 		//pagina web
 		function seleccionarTodasReservas($idUsuario){
-			$consulta="select reservas.ID AS ID,rutas.NOMBRE AS RUTAS,FECHA,PERSONAS from reservas join rutas ON rutas.ID = RESERVAS.ID_RUTA  WHERE ID_USUARIO = $idUsuario";
+			$consulta="select reservas.ID AS ID,rutas.NOMBRE AS RUTAS,FECHA,PERSONAS from reservas join rutas ON rutas.ID = RESERVAS.ID_RUTA  WHERE ID_USUARIO = $idUsuario and fecha>= CURDATE() order by RESERVAS.fecha asc";
 			if($resultado=$this->conexion->query($consulta)){
 				return $resultado;
 			}

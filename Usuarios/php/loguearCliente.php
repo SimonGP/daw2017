@@ -2,6 +2,14 @@
 
 include "clase_usuarios.php";
 
+class errores{
+	public $mensaje="";
+	
+	function __construct($mensaje){
+		$this->mensaje= $mensaje;
+	}
+}
+
 class ObjetoLoguin {
     public $nick = "";
     public $correo = "";
@@ -26,7 +34,9 @@ $loguear = new Usuarios();
 $resultado = $loguear->comprobarLogueo($nick,$password);
 
 if($resultado == 0) {
-    $respuestaNegativa = ["El nickname no existe"];
+
+    $respuestaNegativa = new errores("El nick no es correcto");
+	header('Content-type: application/json');
     echo(json_encode($respuestaNegativa));
     
 }else {
@@ -42,12 +52,13 @@ if($resultado == 0) {
 		$_SESSION['telefono']=$resultado[6];
 		$_SESSION['fecna']=$resultado[7];
         
-        $respuesta = new ObjetoLoguin($_SESSION["nick"],$_SESSION["Correo"],$_SESSION["PerfilUsuario"]);
+        $respuesta = new errores("Conectado");
         header('Content-type: application/json');
         echo(json_encode($respuesta));
         
     }else {
-        $respuestaNegativa = ["La password introducida no es correcta"];
+        $respuestaNegativa = new errores("La password introducida no es correcta");
+		header('Content-type: application/json');
         echo(json_encode($respuestaNegativa));
     }
 }

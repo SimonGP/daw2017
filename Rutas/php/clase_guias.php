@@ -43,7 +43,7 @@
 		}
 		
 		function seleccionarTodosGuias(){
-			$consulta="select * from guias";
+			$consulta="select guias.ID, usuarios.usuario as NOMBRE, EXPERIENCIA, IMAGEN_GUIA from guiaS join usuarios on usuarios.id = guias.nombre_guia";
 			if($resultado=$this->conexion->query($consulta)){
 				return $resultado;
 			}

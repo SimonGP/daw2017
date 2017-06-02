@@ -27,7 +27,7 @@
 			$this->pdf=$pdf;
 			$this->max_res=$max_res;
 			$this->valoracion=$valoracion;
-			$this->mapa="dentro"/*$mapa*/;
+			$this->mapa=$mapa;
 			$this->dificultad=$dificultad;			
 		}
 	}	

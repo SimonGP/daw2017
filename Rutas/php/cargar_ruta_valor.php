@@ -2,6 +2,7 @@
 	require_once("clase_rutas.php");
 	$enlace=new rutas();
 	$ruta=$_POST['ruta'];
+
 	$datos=array();
 	$resultado=$enlace->seleccionarTodasLasRutasValoracion($ruta);
 	$datos=array();

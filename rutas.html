@@ -16,6 +16,7 @@
 			<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 			<script  src="Usuarios/js/usuariosCliente.js"></script>
 			<script  src="rutas/js/indexruta.js"></script>
+            <script  src="Rutas/js/valoracion-rutas.js"></script>
 			<title>RUTAS</title>
 </head>
 	
@@ -72,20 +73,20 @@
 			<li><a href="hospedajes.html">HOSPEDAJE</a></li>
 			<li><a href="guias.html">GUIAS</a></li>
 			<li class = "oculto" id="botonPerfil"><a href="perfilusuario.html">PERFIL</a></li>
-			<li class="ocultar" id="botonAdmin" ><a href="admin.html">GESTIÓN</a></li>
+			<li class="ocultar" id="botonAdmin" ><a href="gestion.html">GESTIÓN</a></li>
 		 </ul> 
 	</nav>
 
 	
 	<div id="div1">
-		<a href="img/publi-home.png" ><img src="img/publi-home.png"></a>
+		<img src="img/logo-rutas.png">
 	</div>	
 	<div class="cuerpo1">
 	<div class="cuerpo2">
 	<aside id="menu-busqueda">
-			<p>Rutas seleccionables:</p>
+			<h3>Rutas seleccionables:</h3>
 			<div id="lista"><select id="listado"></select></div>
-			<p>Localidades:</p>
+			<h3>Localidades:</h3>
 			<div>
 				<select id="localidad_busqueda">			
 					<option selected>Todas</option>
@@ -99,12 +100,16 @@
 					<option>Segura del Toro</option>
 				</select>
 			</div>
-			<p>Fechas disponibles:</p>
+			<h3>Fechas disponibles:</h3>
 			<div>
 				<input type="text" name="calendario" id="datepicker"/>
 			</div>
 			<span class="button reserva" id="reset">Reset</span>
 			<div id="Clas_rutas"></div>
+        <h3>Rutas más valoradas</h3>
+        <div id="mas-valoradas"></div>
+        <h3>Usuarios más valorados</h3>
+        <div id="usuarios_mas_valorados"></div>
 		</aside>
 	
 	<section>
@@ -147,7 +152,7 @@
 	</div>
 	</div>
 	 <footer>
-	<p>RUTAS Ambroz S.A ©Copyright 2017 | Todos los derechos reservados.</p>
+	<p>Esta página web es un proyecto realizado por Juan, Simón y Mario para el 2º de DAW</p>
 	</footer>
 	</div>
 	<div class="overlay-container">
@@ -164,7 +169,7 @@
 			<li>Nombre completo: <input type="text" id ="nombre_rutero" name="nombre_completo"/></span></li>
 			<li><label>DNI: <input type="text" id ="dni_rutero" name="dni_acompanante"/></span>	</li>
 			</div>
-			<div id="listado_ruteros" class="oculto"></div>
+			<div id="listado_ruteros" class="ocultar"></div>
 			<a href="#" id="rutero" class="button reserva">Añadir</a>
 			<span id="guardar_Reserva" class="button reserva">Guardar</span>
 		</div>			
@@ -181,6 +186,14 @@
 			</div>
 		</div>	
 	</div>	
+	<div class="overlay-container6">
+		<div class="window-container6 zoomin">
+			<div id="mensaje">
+				<p id="alerta"></p>
+			</div>
+			<span id="close6" class="button reserva">Cerrar</span>
+		</div>			
+	</div>
 	<div class="overlay-container3">
 		<div class="window-container3 zoomin">
 			<div id="mensaje">

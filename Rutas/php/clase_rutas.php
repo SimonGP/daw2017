@@ -34,7 +34,7 @@
 			}else{
 				$mensaje="No se ha podido modificar la ruta con id=".$id;
 			}
-			return $mensaje;
+			return $consulta;
 		}
 		//Para panel del Admin
 		function borrarRuta($id){
@@ -49,7 +49,7 @@
 		}
 		//Para la web
 		function seleccionarTodasLasRutas(){			
-			$consulta="select rutas.ID as ID, rutas.NOMBRE as NOM, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOC, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD, rutas.VALORACION as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD order by rutas.id asc";			
+			$consulta="select rutas.ID as ID, rutas.NOMBRE as NOM, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOC, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD,  IFNULL(CONVERT((select avg(historial.VALOR_RUTA) from historial where historial.ID_RUTA = rutas.id),DECIMAL(4,2)),0) as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD order by rutas.id asc";			
 			//$consulta="select * from rutas";
 			if($resultado=$this->conexion->query($consulta)){
 			
@@ -65,7 +65,7 @@
 		}
 		//Para la web
 		function seleccionarUnaRuta($id){
-			$consulta="select rutas.ID as ID, rutas.NOMBRE as NOMBRE, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOCALIDAD, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD, rutas.VALORACION as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD  where id=".$id;
+			$consulta="select rutas.ID as ID, rutas.NOMBRE as NOMBRE, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOCALIDAD, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD,  IFNULL(CONVERT((select avg(historial.VALOR_RUTA) from historial where historial.ID_RUTA = rutas.id),DECIMAL(4,2)),0)  as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD  where id=".$id;
 			if($resultado=$this->conexion->query($consulta)){
 				return $resultado;
 			}
@@ -77,7 +77,7 @@
 		}
 	
 	function seleccionarTodasLasRutasValoracion($ruta){			
-			$consulta="select rutas.ID as ID, rutas.NOMBRE as NOM, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOC, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD, rutas.VALORACION as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD where nombre='".$ruta."' order by rutas.VALORACION desc";			
+			$consulta="select rutas.ID as ID, rutas.NOMBRE as NOM, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOC, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD,  IFNULL(CONVERT((select avg(historial.VALOR_RUTA) from historial where historial.ID_RUTA = rutas.id),DECIMAL(4,2)),0) as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD where nombre='".$ruta."' order by VALORACION desc";			
 			//$consulta="select * from rutas";
 			if($resultado=$this->conexion->query($consulta)){
 			
@@ -93,7 +93,7 @@
 		}
 		
 		function seleccionarRutasLocalidad($localidad){
-			$consulta="select rutas.ID as ID, rutas.NOMBRE as NOM, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOC, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD, rutas.VALORACION as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD " ;			
+			$consulta="select rutas.ID as ID, rutas.NOMBRE as NOM, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOC, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD,  IFNULL(CONVERT((select avg(historial.VALOR_RUTA) from historial where historial.ID_RUTA = rutas.id),DECIMAL(4,2)),0)  as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD " ;			
 			if($localidad!="Todas"){
 				$consulta.="where localidad.LOCALIDAD='".$localidad."'";
 			}
@@ -113,7 +113,7 @@
 		function mostrarValoracion(){
             
             
-            $consulta="select rutas.ID as ID, rutas.NOMBRE as NOM, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOC, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD, rutas.VALORACION as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD order by rutas.VALORACION desc";
+            $consulta="select rutas.ID as ID, rutas.NOMBRE as NOM, rutas.KILOMETROS as KILOMETROS, rutas.MINUTOS as MINUTOS, localidad.LOCALIDAD as LOC, rutas.CONSEJOS as CONSEJOS, dificultadrutas.DIFICUTAD as DIFICULTAD,  IFNULL(CONVERT((select avg(historial.VALOR_RUTA) from historial where historial.ID_RUTA = rutas.id),DECIMAL(4,2)),0)  as VALORACION, rutas.PDF as PDF,  rutas.MAX_RESERVAS as MAX_RESERVAS, rutas.MAPA as MAPA from rutas  join localidad on localidad.ID_LOCALIDAD = rutas.LOCALIDAD  join dificultadrutas on dificultadrutas.ID_DIFICULTAD = rutas.DIFICULTAD order by VALORACION desc";
             
             
             if($resultado=$this->conexion->query($consulta)){
@@ -128,7 +128,12 @@
 				return "sin resultados";
 			}
         }
-		
+		function nuevaValoracion($valor, $ruta){
+			$consulta="update rutas set VALORACION=".$valor." where id=".$ruta;
+			if($resultado=$this->conexion->query($consulta)){
+				return "ok";
+			}
+		}
 	}
 
 ?>

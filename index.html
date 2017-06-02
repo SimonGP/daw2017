@@ -14,6 +14,7 @@
             <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
             <script  src="Usuarios/js/usuariosCliente.js"></script>
             <script  src="Rutas/js/valoracion-rutas.js"></script>
+            
             <title>RUTAS</title>
 </head>
     
@@ -21,11 +22,11 @@
 <nav id="menu-top">
                  <div id="desc" class="ocultar" style='width:300px;float:right;color:white;'><form><p>Conectado como <a href='perfilUsuario.html' id='nickLogueado'></a> <input type='button' name='desconectar' id='desconectar' class='botonEspecial' value='Desconectar'/></p></form>
                 </div>
-                <li id="liLogueo" class="ocultar"><a href="#">Loguearse</a>
+                <li id="liLogueo" class="ocultar"><a href="#">LOGIN</a>
                     <ul id="ulLogueo" class="mostrar">
                         <li>
                             <form>
-                                <div>Nick:</div>
+                                <div>Usuario:</div>
                                 <div><input type='text' name='usuario' placeholder='Usuario' id='usuario'/></div>
                                 <div>Contraseña:</div>
                                 <div><input type='password' name='passwd' id="passwd" placeholder='Password'/></div>
@@ -37,7 +38,7 @@
                     </ul>
                 </li>
                
-                <li><a href="#" id="liRegistro" class="ocultar">Registrarse</a>
+                <li><a href="#" id="liRegistro" class="ocultar">REGISTRO</a>
                     <ul class="mostrar" id="ulRegistro">
                         <li>
                             <form id="insert" >
@@ -70,7 +71,7 @@
 			<li><a href="hospedajes.html">HOSPEDAJE</a></li>
 			<li><a href="guias.html">GUIAS</a></li>
 			<li class = "oculto" id="botonPerfil"><a href="perfilusuario.html">PERFIL</a></li>
-			<li class="ocultar" id="botonAdmin" ><a href="admin.html">GESTIÓN</a></li>
+			<li class="ocultar" id="botonAdmin" ><a href="gestion.html">GESTIÓN</a></li>
 		 </ul> 
 	</nav>
 
@@ -83,17 +84,20 @@
     <aside>
         <h3>Rutas más valoradas</h3>
         <div id="mas-valoradas"></div>
+        <h3>Usuarios más valorados</h3>
+        <div id="usuarios_mas_valorados"></div>
     </aside>
     
 	<section>
-    <article>
+    <article id="cont-index">
     <img src="img/imagen-index.jpg" width="100%">
-        <h2>Rutas Ambroz</h2>
+       <h2>Rutas Ambroz</h2>
+    
     <p>Esta página web está dedicada al mundo de las rutas. Se dispone de varias funcionalidades en este proyecto.</p>
     <p>En el apartado de rutas podemos visualizar todas las rutas que tenemos disponibles al norte de Cáceres, más concretamente en el valle Ambroz. También es posible visualizar en un mapa la ruta real y hacer una reserva de la misma. Si haces una de las rutas que tenemos, nos encantaría que nos dejaras un comentario en el apartado de rutas explicando tu experiencia.</p>
     <p>En la sección de hospedajes puedess visualizar todos los sitios donde te puedes hospedar y filtrarlos por localidad</p>
     <p>Y por último, en guías puedes solicitar uno de nuestros guías para que te acompañe durante todo el trayecto de la ruta !Nuestros guías son todos muy majos!</p>
-    <span>Esta página web es un proyecto realizado por Juan, Simón y Mario para el 2º de DAW</span>
+    
          
         
     </article>
@@ -102,10 +106,17 @@
     </div>
     </div>
      <footer>
-    <p>RUTAS Ambroz S.A ©Copyright 2017 | Todos los derechos reservados.</p>
+    <p>Esta página web es un proyecto realizado por Juan, Simón y Mario para el 2º de DAW</p>
 	</footer>
     </div>
-    
+    <div class="overlay-container3">
+		<div class="window-container3 zoomin">
+			<div id="mensaje">
+				<p id="alerta"></p>
+			</div>
+			<span id="close3" class="button reserva">Cerrar</span>
+		</div>			
+	</div>	
     
 </body>
 

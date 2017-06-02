@@ -1,4 +1,4 @@
-var session = false
+
 function noExcursion(date){
 var day = date.getDay();
 // aqui indicamos el numero correspondiente a los dias que ha de bloquearse (el 0 es Domingo, 1 Lunes, etc...)
@@ -34,18 +34,31 @@ function cargarRutas(){
 			var ruta=$('#listado').val()				
 			CargarRutaInicio(ruta)
 			$('#lista').change(function(){	
-			var ruta=$('#listado').val()				
-			CargarRutaInicio(ruta)								
+				var ruta=$('#listado').val()				
+				CargarRutaInicio(ruta)								
 			})			
 		}		
 	})
 }
 
 // funcion para mostrar los datos de la ruta seleccionada
-function CargarRutaInicio(ruta){	
-	dato={
-		ruta:ruta
+function CargarRutaInicio(ruta){
+	console.log("ruta"+ruta)
+	var session=localStorage.getItem("id")
+	
+	if (session!=0){
+		$('#listado').val(session)
+		dato={
+			ruta:session			
+		}
+		console.log("session valor"+session)
+		localStorage.setItem('id', 0)
+	}else{
+		dato={
+			ruta:ruta
+		}
 	}
+	
 	$.ajax({
 		data:dato,
 		url: 'rutas/php/cargar_ruta_valor.php',  
@@ -126,7 +139,7 @@ function cargarRutasFecha(){
 			DataType:'Json',	
 			success: function(data){ 			
 				if(data[0].nombre=="vacio"){
-						alert("No Hay rutas para esa fecha")						
+						alerta("No Hay rutas para esa fecha")						
 				}else{		
 					$('#localidad_busqueda').val("Todas")
 					$('#lista').html("")
@@ -191,24 +204,25 @@ $(document).ready(function(){
 	$('#rutero').click(annadir)
 	$('#nuevocomentario').click(abrirComentario)
 	$('#localidad_busqueda').change(cargarRutasLocalidad)
-		var hoy= new Date()
-			$.datepicker.regional['es'] = {
-				closeText: 'Cerrar',
-				prevText: '< Ant',
-				nextText: 'Sig >',
-				currentText: 'Hoy',
-				monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-				monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
-				dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-				dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-				dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
-				weekHeader: 'Sm',
-				dateFormat: 'dd/mm/yy',
-				firstDay: 1,
-				isRTL: false,
-				showMonthAfterYear: false,
-				yearSuffix: ''
-			 }
+	$('#close6').click(cerrarAlerta);
+	var hoy= new Date()
+	$.datepicker.regional['es'] = {
+		closeText: 'Cerrar',
+		prevText: '< Ant',
+		nextText: 'Sig >',
+		currentText: 'Hoy',
+		monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+		monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+		dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+		dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+		weekHeader: 'Sm',
+		dateFormat: 'dd/mm/yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''
+	 }
 			$.datepicker.setDefaults($.datepicker.regional['es'])
 			$("#datepicker").datepicker({
 				minDate: hoy,
@@ -273,19 +287,19 @@ function guardarReserva(){
 		success: function(data){
 			console.log(data)
 			if (data==1){
-				alert('Ya tienes una reserva realizada')
+				alerta('Ya tienes una reserva realizada')
 			}else{
 				var id=$('#id_ruta').val()
 				var fecha=$('#listado_rutas').val()	
 				var fecha2=cambiarFecha(fecha)
 				var nombre=$('#nombrecompleto').html()
 				var dni=$('#DNIreserva').html()
-				var mensaje="<p>"+nombre+" <b>"+dni+"</b></p>"
+				var mensaje="<p>"+nombre+" </p>#<p>"+dni+"</p>@"
 				var contador=1;
 				var acompanantes=$('.compi')
 				var dniacompa=$('.dnicompi')		
 				for (var x=0;x<acompanantes.length;x++){
-					mensaje+="<p>"+acompanantes[x].innerHTML+" <b>"+dniacompa[x].innerHTML+"</b></p>"
+					mensaje+="<p>"+acompanantes[x].innerHTML+" <p>#</p>"+dniacompa[x].innerHTML+"</p>@"
 					contador++;
 				}					
 				datos={
@@ -326,14 +340,19 @@ function guardarReserva(){
 	
 
 function annadir(){
+	console.log("dentro añadir")
 	if($('#nombre_rutero').val()== "" || $('#dni_rutero').val()==""){
-		
+		alerta("Rellene todos los campos")
 	}else{		
+		console.log("dentro añadir 2")
 		$('#listado_ruteros').removeClass("ocultar")
-		$('#listado_ruteros').addClass("mostrar")		
+		$('#listado_ruteros').addClass("mostrar")
+		
 		var nombre=$('#nombre_rutero').val()
 		var dni=$('#dni_rutero').val()		
 		var mensaje=$('#listado_ruteros').html()
+		console.log(nombre)
+console.log(dni)
 		mensaje+="<p>Nombre: <span class='compi'>"+nombre+"</span></p><p>DNI: <span class='dnicompi'>"+dni+"</span></p><br><hr/>"
 		$('#listado_ruteros').html(mensaje)
 	}
@@ -421,13 +440,13 @@ function actualizarComentarios(){
 			var enlace=""
 			for(var x=0;x<imprimir;x++){
 				enlace+="<section class='foros'>"					
-				enlace+="<artiche class='foros1'><span class='nick'>By "+data[x].nick+"</span><span class='fecha_foro'>"+data[x].fecha+"</span></article>"
+				enlace+="<article class='foros1'><span class='nick'>By "+data[x].nick+"</span><span class='fecha_foro'>"+data[x].fecha+"</span></article>"
 				enlace+="<article class='container'><p class='foros2'>"+data[x].mensaje+"</p></article>"				
 				enlace+="</section>"
 			}
 			if(imprimir==0){
 				enlace+="<section class='foros'>"					
-				enlace+="<artiche class='foros1'><span class='nick'></span><span class='fecha_foro'></span></article>"
+				enlace+="<article class='foros1'><span class='nick'></span><span class='fecha_foro'></span></article>"
 				enlace+="<article class='container'><p class='foros2'>Sé el primero en hacer un comentario</p></article>"				
 				enlace+="</section>"
 			}			
@@ -465,7 +484,21 @@ function cuenta(){
    $('#contador').html(quedan)   
 } 
 
+function alerta(mensaje){
+$('#alerta').html(mensaje)	
+	type = $(this).attr('data-type');	
+	$('.overlay-container6').fadeIn(function() {		
+		window.setTimeout(function(){
+			$('.window-container6.zoomin').addClass('window-container-visible6');
+		}, 100);
+		
+	});
+}
 
+function cerrarAlerta(){
+	$('#alerta').val("")
+	$('.overlay-container6').fadeOut().end().find('.window-container6').removeClass('window-container-visible6');
+}
 
 function cambiarFecha(fecha){
 	var fecha=$('#listado_rutas').val()

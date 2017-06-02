@@ -21,11 +21,11 @@
 <nav id="menu-top">
                  <div id="desc" class="ocultar" style='width:300px;float:right;color:white;'><form><p>Conectado como <a href='perfilUsuario.html' id='nickLogueado'></a> <input type='button' name='desconectar' id='desconectar' class='botonEspecial' value='Desconectar'/></p></form>
                 </div>
-                <li id="liLogueo" class="ocultar"><a href="#">Loguearse</a>
+                <li id="liLogueo" class="ocultar"><a href="#">LOGIN</a>
                     <ul id="ulLogueo" class="mostrar">
                         <li>
                             <form>
-                                <div>Nick:</div>
+                                <div>Usuario:</div>
                                 <div><input type='text' name='usuario' placeholder='Usuario' id='usuario'/></div>
                                 <div>Contraseña:</div>
                                 <div><input type='password' name='passwd' id="passwd" placeholder='Password'/></div>
@@ -37,7 +37,7 @@
                     </ul>
                 </li>
                
-                <li><a href="#" id="liRegistro" class="ocultar">Registrarse</a>
+                <li><a href="#" id="liRegistro" class="ocultar">REGISTRO</a>
                     <ul class="mostrar" id="ulRegistro">
                         <li>
                             <form id="insert" >
@@ -57,11 +57,11 @@
                         </li>
                     </ul>         
                 </li>
-            </nav>  
+            </nav> 
     
 <div id="centrar">  
 <header>
-<a href="index.html"><img src="img/header.jpg" width="100%"></a>
+<img src="img/header.jpg" width="100%">
 </header>
     	<nav id="menu-principal">
      <ul>  
@@ -71,48 +71,77 @@
     <li><a href="hospedajes.html">HOSPEDAJE</a></li>
     <li><a href="guias.html">GUIAS</a>
     </li>
-    <li><a href="perfilusuario.html">PERFIL</a></li>
-    <li class="ocultar" id="botonAdmin" ><a href="admin.html">GESTIÓN</a></li>
+    <li class = "oculto" id="botonPerfil"><a href="perfilusuario.html">PERFIL</a></li>
+    <li class="ocultar" id="botonAdmin" ><a href="gestion.html">GESTIÓN</a></li>
           </ul> 
 	</nav>
 
     
     <div id="div1">
-    <a href="img/publi-home.png" ><img src="img/publi-home.png"></a>
+    <img src="img/logo-rutas.png">
 	</div>
     <div class="cuerpo1">
     <div class="cuerpo2">
-    <aside>
-        <article>
-                        <form  id="updateUsuario">
+		<aside>
+			<h3>Estadísticas</h3>	
+			<article>
+			<div><p>KM's que llevas <span  id="KMS">0.0</span></p><div>
+			</article>
+			<article>
+			<div><p>Nº Rutas realizadas <span  id="numrutas">0</span></p><div>
+			</article>
+			<h3>Tu Perfil</h3>			
+				<article>
+				<span id="editar_perfil" class="button reserva">Editar</span>
+					<form  id="updateUsuario" class="ocultar2">
 
-                            <fieldset>
-                                <legend id="desplegableUpdate">Modificar datos de perfil:</legend>
-                                <div id="divUpdate" class="ocultar2">
-                                    <div>Contraseña: <input type="password" name="passwdUpdate" id="passwdUpdate"/></div>
-                                    <div>Nombre:<input type="text" name="nombreUpdate" id="nombreUpdate" placeholder="ej:David"/></div> 
-                                    <div>Apellidos: <input type="text" name="apellidosUpdate" id="apellidosUpdate" placeholder="ej:García Hernández"/></div>
-                                    <div>Fecha de nacimiento: <input type="text" name="fecnaUpdate" id="fecnaUpdate" placeholder="ej:23/05/1997"/></div>
-                                    <div>Teléfono: <input type="text" name="telefonoUpdate" id="telefonoUpdate" placeholder="678365229"/></div>
-                                    <div><input type="button" name="update" id="update" class="botonEspecial" value="Enviar"/></div></div>
-                            </fieldset>    
-                        </form>    
-                    </article>
-    </aside>
+						<fieldset>
+							<legend id="desplegableUpdate">Modificar datos de perfil:</legend>
+							<div id="divUpdate">
+								<div>Cambiar Contraseña: <input type="password" name="passwdUpdate" id="passwdUpdate" placeHolder="Nueva Contraseña"/></div>
+								<div>Nombre:<input type="text" name="nombreUpdate" id="nombreUpdate" placeholder="ej:David"/></div> 
+								<div>Apellidos: <input type="text" name="apellidosUpdate" id="apellidosUpdate" placeholder="ej:García Hernández"/></div>
+								<div>Fecha de nacimiento: <input type="text" name="fecnaUpdate" id="fecnaUpdate" placeholder="ej:23/05/1997"/></div>
+								<div>Teléfono: <input type="text" name="telefonoUpdate" id="telefonoUpdate" placeholder="678365229"/></div>
+								<div><span id="update" class="button reserva">Guardar</span></div></div>
+						</fieldset>    
+					</form>    
+				</article>
+		</aside>
+		
+		<section>
+		<div  class="colocacion">
+		<div><h3 class="tus-reservas">Tus Reservas</h3></div>
+			<div id='reservas'>
+			</div> </div>
+			<div  class="colocacion">
+		<div><h3 class="tus-reservas">Tu Historial</h3>
+		<div id="historial"></div>
+		</div></div> 
+		</section>
+    </div>         
+           
     
-	  <section>
-                    
-                </section>
-            
-            <div id='reservas'>
-              </div> 
-            </div>
-     <footer>
-    <p>RUTAS Ambroz S.A ©Copyright 2017 | Todos los derechos reservados.</p>
-	</footer>
     </div>
-    
-    
+    <div class="overlay-container3">
+		<div class="window-container3 zoomin">
+			<div id="mensaje">
+				<p id="alerta"></p>
+			</div>
+			<span id="close3" class="button reserva">Cerrar</span>
+		</div>			
+	</div>
+	<div class="overlay-container5">
+		<div class="window-container5 zoomin">
+			<div id="mensaje">
+				<p id="alerta">¿Desea eliminar su Reserva?</p>
+				<p><a href="#" id="alertaSi">Sí</a><a href="#" id="alertaNo">No</a></p>
+			</div>			
+		</div>			
+	</div>	
+     <footer>
+    <p>Esta página web es un proyecto realizado por Juan, Simón y Mario para el 2º de DAW</p>
+	</footer>
 </body>
 
 </html>

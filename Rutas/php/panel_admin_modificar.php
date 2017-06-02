@@ -12,10 +12,9 @@
 	$valoracion=$_POST['valoracion'];
 	$mapa=$_POST['mapa'];
 	$dificultad=$_POST['dificultad'];
-	$imagen=$_POST['dir_img'];
 	
 	
-	/*$id=;
+	/*$id=32;
 	$nombre=1;
 	$km=2;
 	$minutos=3;
@@ -25,7 +24,7 @@
 	$max_res=8;
 	$valoracion=9;
 	$mapa=10;
-	$dificultad=11;*/
+	$dificultad=1*/;
 	
 	
 	$enlace=new rutas();

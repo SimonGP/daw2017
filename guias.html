@@ -13,6 +13,8 @@
             <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
             <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
             <script  src="Usuarios/js/usuariosCliente.js"></script>
+            <script  src="Rutas/js/visualizar-guias.js"></script>
+            <script  src="Rutas/js/valoracion-rutas.js"></script>
             <script  src="Rutas/js/valoracion-rutas.js"></script>
             <title>RUTAS</title>
 </head>
@@ -21,11 +23,11 @@
 <nav id="menu-top">
                  <div id="desc" class="ocultar" style='width:300px;float:right;color:white;'><form><p>Conectado como <a href='perfilUsuario.html' id='nickLogueado'></a> <input type='button' name='desconectar' id='desconectar' class='botonEspecial' value='Desconectar'/></p></form>
                 </div>
-                <li id="liLogueo" class="mostrar"><a href="#">Loguearse</a>
+                <li id="liLogueo" class="ocultar"><a href="#">LOGIN</a>
                     <ul id="ulLogueo" class="mostrar">
                         <li>
                             <form>
-                                <div>Nick:</div>
+                                <div>Usuario:</div>
                                 <div><input type='text' name='usuario' placeholder='Usuario' id='usuario'/></div>
                                 <div>Contraseña:</div>
                                 <div><input type='password' name='passwd' id="passwd" placeholder='Password'/></div>
@@ -37,7 +39,7 @@
                     </ul>
                 </li>
                
-                <li><a href="#" id="liRegistro" class="mostrar">Registrarse</a>
+                <li><a href="#" id="liRegistro" class="ocultar">REGISTRO</a>
                     <ul class="mostrar" id="ulRegistro">
                         <li>
                             <form id="insert" >
@@ -57,7 +59,7 @@
                         </li>
                     </ul>         
                 </li>
-            </nav>  
+            </nav> 
     
 <div id="centrar">  
 <header>
@@ -70,7 +72,7 @@
 			<li><a href="hospedajes.html">HOSPEDAJE</a></li>
 			<li><a href="guias.html">GUIAS</a></li>
 			<li class = "oculto" id="botonPerfil"><a href="perfilusuario.html">PERFIL</a></li>
-			<li class="ocultar" id="botonAdmin" ><a href="admin.html">GESTIÓN</a></li>
+			<li class="ocultar" id="botonAdmin" ><a href="gestion.html">GESTIÓN</a></li>
 		 </ul> 
 	</nav>
 
@@ -83,12 +85,14 @@
     <aside>
         <h3>Rutas más valoradas</h3>
         <div id="mas-valoradas"></div>
+        <h3>Usuarios más valorados</h3>
+        <div id="usuarios_mas_valorados"></div>
     </aside>
     
 	<section>
     <article>
     
-        <p>En proceso</p>
+       <div id="caja-guias"></div>
          
         
     </article>
@@ -97,10 +101,17 @@
     </div>
     </div>
      <footer>
-    <p>RUTAS Ambroz S.A ©Copyright 2017 | Todos los derechos reservados.</p>
+    <p>Esta página web es un proyecto realizado por Juan, Simón y Mario para el 2º de DAW</p>
 	</footer>
     </div>
-    
+    <div class="overlay-container3">
+		<div class="window-container3 zoomin">
+			<div id="mensaje">
+				<p id="alerta"></p>
+			</div>
+			<span id="close3" class="button reserva">Cerrar</span>
+		</div>			
+	</div>	
     
 </body>
 

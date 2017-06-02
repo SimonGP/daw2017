@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+    <html>
+
+        <head>
+        <link rel="stylesheet" href="css/estilos-v2.css">
+            <link rel="stylesheet" type="text/css" href="css/style.css"/>
+            <meta name="author" content="" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="copyright" content="aw1516.org" />
+            <meta name="description" content="Paginas web de principiantes" />
+            <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+            <script  src="Usuarios/js/usuariosCliente.js"></script>
+            <script  src="Rutas/js/valoracion-rutas.js"></script>
+            <script  src="rutas/js/administracion.js"></script>
+            <title>RUTAS</title>
+</head>
+        
+
+        <body>
+           <nav id="menu-top">
+                 <div id="desc" class="ocultar" style='width:300px;float:right;color:white;'><form><p>Conectado como <a href='perfilUsuario.html' id='nickLogueado'></a> <input type='button' name='desconectar' id='desconectar' class='botonEspecial' value='Desconectar'/></p></form>
+                </div>
+                <li id="liLogueo" class="ocultar"><a href="#">Loguearse</a>
+                    <ul id="ulLogueo" class="mostrar">
+                        <li>
+                            <form>
+                                <div>Nick:</div>
+                                <div><input type='text' name='usuario' placeholder='Usuario' id='usuario'/></div>
+                                <div>Contraseña:</div>
+                                <div><input type='password' name='passwd' id="passwd" placeholder='Password'/></div>
+                                <div><input type='button' name='loguearse' id='loguearse' class="botonEspecial" value='Enviar' /></div>
+                            </form>
+
+
+                        </li>
+                    </ul>
+                </li>
+               
+                <li><a href="#" id="liRegistro" class="ocultar">Registrarse</a>
+                    <ul class="mostrar" id="ulRegistro">
+                        <li>
+                            <form id="insert" >
+                                <div id="registrarse">Registrarse aquí:</div>
+                                <div>Nick de usuario: <input type="text" name="usuario" id="usuario" placeholder="ej:CyberBob"/></div>
+                                <div>Contraseña: <input type="password" name="passwd" id="passwd"/></div>
+                                <div>Correo electrónico: <input type="text" name="correo" id="correo" placeholder="ej:usuario@correo.com"/></div>
+                                <div>DNI:<input type="text" name="dni" id="dni" placeholder="ej:David"/></div>
+                                <div>Nombre:<input type="text" name="nombre" id="nombre" placeholder="ej:David"/></div> 
+                                <div>Apellidos: <input type="text" name="apellidos" id="apellidos" placeholder="ej:García Hernández"/></div>
+                                <div>Fecha de nacimiento: <input type="text" name="fecna" id="fecna" placeholder="ej:23/05/1997"/></div>
+                                <div>Teléfono: <input type="text" name="telefono" id="telefono" placeholder="678365229"/></div>
+                                <!--El siguiente input #perfil hay que dejarlo oculto para que el usuario no lo vea -->
+                                <div class="ocultar"><input type="text" name="perfil" id="perfil" value="3"/></div>
+                                <div><input type="button" name="insertar" id="insertar" class="botonEspecial" value="Enviar"/></div>
+                            </form>
+                        </li>
+                    </ul>         
+                </li>
+            </nav>  
+    
+<div id="centrar">  
+<header>
+<img src="img/header.jpg" width="100%">
+</header>
+    	<nav id="menu-principal">
+		 <ul>  
+			<li><a href="index.html">INICIO</a></li>
+			<li><a href="rutas.html">RUTAS</a></li>
+			<li><a href="hospedajes.html">HOSPEDAJE</a></li>
+			<li><a href="guias.html">GUIAS</a></li>
+			<li class = "oculto" id="botonPerfil"><a href="perfilusuario.html">PERFIL</a></li>
+			<li class="ocultar" id="botonAdmin" ><a href="gestion.html">GESTIÓN</a></li>
+		 </ul> 
+	</nav>
+
+    
+    <div id="div1">
+    <img src="img/logo-rutas.png">
+	</div>
+    <div></div>
+    <button></button>
+	<section id="mostrar_rutas">
+    <article>
+  
+        <button id="nuevo" class="reserva">Añadir nuevo</button>
+        <div id="mostrar"></div>
+        
+    </article>
+	</section>
+    
+       
+   
+     <footer>
+    <p>RUTAS Ambroz S.A ©Copyright 2017 | Todos los derechos reservados.</p>
+	</footer>
+        <div class="overlay-container3">
+		<div class="window-container3 zoomin">
+			<div id="mensaje">
+				<p id="alerta"></p>
+			</div>
+			<span id="close3" class="button reserva">Cerrar</span>
+		</div>			
+	</div>	
+    </div>
+    <div class="overlay-container">
+		<div class="window-container zoomin">
+		<section id="nuevo_articulo">
+		
+			<label id="id">ID: <input type="text" name="id" readOnly="true"/></label>	<!-- Ocultar al añadir-->	
+			<label>Nombre: <input type="text" name="nombre"/></label>
+			<label>Kilometros: <input type="text" name="kilometros"/></label>
+			<label>Minutos: <input type="number" name="minutos"/></label>
+			<label>Localidad: <select name="localidad" id="localidad">
+				<option value="Abadía">Abadía</option>
+				<option value="Baños de Montemayor">Baños de Montemayor</option>
+				<option value="Aldeanueva del Camino">Aldeanueva del Camino</option>
+				<option value="Casas del Monte">Casas del Monte</option>
+				<option value="Segura del Toro">Segura del Toro</option>
+				<option value="Hervás">Hervás</option>
+				<option value="Gargantilla">Gargantilla</option>
+				<option value="La Garganta">La Garganta</option>
+			</select></label>
+			<label>Consejos: <textarea name="consejos" cols=50 rows=10></textarea></label>
+			<label>Dificultad: <select name="dificultad" id="dificultad">
+				<option value="Baja">Baja</option>
+				<option value="Media">Media</option>
+				<option value="Alta">Alta</option>
+			</select></label>
+			<label>Numero de reservas : <input type="number" name="maximo"/></label>
+			<label>Mapa: <input type="text" name="mapa"/></label>
+			<label id="pdf">Dirección PDF: <input type="text" name="pdf"/></label><!-- Ocultar al añadir-->	
+			<label id="valora">Valoracion: <input type="number" name="valoracion"></label><!-- Ocultar al añadir -->
+			<form enctype="multipart/form-data" class="formulario">
+			<label>Subir PDF</label>
+			<input name="archivo" type="file" id="imagen"/>
+			<input type="button" value="Registrar" class="reserva" id="registrar"/>
+			<input type="button" value="Modificar" class="reserva" id="actualizar"/>
+			</form>			
+			<p id="mensaje"></p><br>
+			<button id="cerrar" class="reserva">Cerrar</button>
+			
+</body>
+
+</html>
