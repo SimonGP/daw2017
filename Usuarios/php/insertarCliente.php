@@ -26,7 +26,7 @@ $apellidos = $_REQUEST['apellidos'];
 $fecna = $_REQUEST['fecna'];
 $telefono = $_REQUEST['telefono'];
 $perfil = $_REQUEST['perfil'];
-$password = $_REQUEST['password'];
+$password = md5($_REQUEST['password']);
 
 
 

@@ -103,6 +103,17 @@ class Usuarios{
 		}
 
 	}
+	
+	function comprobarNick($nick){
+		$consulta="select USUARIO from usuarios where USUARIO ='".$nick."'";
+		if($resultado=$this->conexion->query($consulta)) {
+			if($resultado->num_rows>0){
+					return 1;
+				}else{
+					return 0;
+				}
+		}
+	}
 }
 
 ?>

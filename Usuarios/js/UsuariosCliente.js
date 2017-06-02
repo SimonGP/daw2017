@@ -99,7 +99,7 @@ function comprobarSession(){
 $(document).ready(function() {
 
 	comprobarSession()
-
+	$('#close3').click(cerrarAlerta);
     $('#loguearse').on('click',function() {
 
         var nick = $(this).parent().parent().children().children("#usuario").val();
@@ -217,44 +217,66 @@ $(document).ready(function() {
 
 
 
-    $('#insertar').on('click',function() {
+    $('#insertar').on('click',function() {    
 
-
-        var nick = $(this).parent().parent().children().children("#usuario").val();
-
-        var correo = $(this).parent().parent().children().children("#correo").val();
-
-        var nombre = $(this).parent().parent().children().children("#nombre").val();
-
-        var apellidos = $(this).parent().parent().children().children("#apellidos").val();
-
-        var fecna = $(this).parent().parent().children().children("#fecna").val();
-
-        var telefono = $(this).parent().parent().children().children("#telefono").val();
-
-        var perfil = $(this).parent().parent().children().children("#perfil").val();
-
-        var dni = $(this).parent().parent().children().children("#dni").val();
-
-        var password = $(this).parent().parent().children().children("#passwd").val();
-
-        var enviarAjax = {"nick":nick,"correo":correo,"dni":dni,"nombre":nombre,"apellidos":apellidos,"fecna":fecna,"telefono":telefono,"perfil":perfil,"password":password};
-				
-        $.ajax({
-            data:  enviarAjax,
-            url:   'Usuarios/php/insertarCliente.php',
+	var nick = $(this).parent().parent().children().children("#usuario").val();
+		var correo = $(this).parent().parent().children().children("#correo").val();
+		var nombre = $(this).parent().parent().children().children("#nombre").val();
+		var apellidos = $(this).parent().parent().children().children("#apellidos").val();
+		var fecna = $(this).parent().parent().children().children("#fecna").val();
+		var telefono = $(this).parent().parent().children().children("#telefono").val();
+		var perfil = $(this).parent().parent().children().children("#perfil").val();
+		var dni = $(this).parent().parent().children().children("#dni").val();
+		var password = $(this).parent().parent().children().children("#passwd").val();
+		var datos={
+			usuario:nick
+		}
+		$.ajax({
+			data:  datos,
+            url:   'Usuarios/php/comprobarNick.php',
             type:  'post',
-            dataType: 'Json',
-            beforeSend: function () {
-                $("#resultado").html("Procesando, espere por favor...");
-            },
+            dataType: 'Json',            
             success:  function (response) {				
-				ocultarTrasLogueo(response.nick,response.correo,response.perfil)               				
-				comprobarSession()
+				console.log("nick"+response)
+				if(response== 0){			
+
+					var enviarAjax = {"nick":nick,"correo":correo,"dni":dni,"nombre":nombre,"apellidos":apellidos,"fecna":fecna,"telefono":telefono,"perfil":perfil,"password":password};
+					var validoMail=comprobarMail(correo)
+					var validoTelefono=validarTelefono(telefono)
+					var validoDNI = nif(dni)						
+					var validoFecha = validarFormatoFecha(fecna)
+					var validoNombre= validarCadena(nombre)
+					var validoApellidos = validarCadena(apellidos)
+					console.log(validoMail)	
+					console.log(validoTelefono)	
+					console.log(validoDNI)	
+					console.log(validoFecha)
+					console.log(validoNombre)	
+					console.log(validoApellidos)
+					alerta(validoApellidos)
+					
+					/*$.ajax({
+						data:  enviarAjax,
+						url:   'Usuarios/php/insertarCliente.php',
+						type:  'post',
+						dataType: 'Json',
+						beforeSend: function () {
+							$("#resultado").html("Procesando, espere por favor...");
+						},
+						success:  function (response) {				
+							ocultarTrasLogueo(response.nick,response.correo,response.perfil)               				
+							comprobarSession()
+						}
+						
+						
+					});*/
+				}else{
+					alerta('El Usuario ya Existe')
+				}
             }
-            
-            
-        });
+		})
+
+        
 
     }); 
     $('#desconectar').on('click',function() {
@@ -383,4 +405,97 @@ $('#botonreserva').removeClass("oculto")
 	}
 }
                 
-            
+function comprobarMail(email){
+	var resultado=""
+	 emailRegex = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
+	if (emailRegex.test(email)) {
+		resultado = 1;
+    } else {
+		resultado = 0;
+    }	
+	return resultado
+	
+}       
+     
+function validarTelefono(telefono){
+	  var resultado = 0
+	  var expresionRegular1=/^[0-9]{9}$/;//<--- con esto vamos a validar el numero
+	  var expresionRegular2=/\s/;//<--- con esto vamos a validar que no tenga espacios en blanco
+	 
+	  if(telefono==''){
+		  console.log("dentro vacio")
+			resultado = 0
+		}
+	  else if(expresionRegular2.test(telefono)){	
+console.log("dentro espacion")		  
+			resultado = 0
+		}
+	  else if(expresionRegular1.test(telefono)){
+		  console.log("dentro numero")
+		  if(telefono.length== 9){
+			  resultado = 1
+		  }else{
+			  resultado = 0
+		  }
+		  
+	  }	
+		return resultado
+}
+
+function nif(dni) {
+  var numero
+  var letr
+  var letra
+  var expresion_regular_dni
+ 
+  expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
+ 
+  if(expresion_regular_dni.test (dni) == true){
+     numero = dni.substr(0,dni.length-1);
+     letr = dni.substr(dni.length-1,1);
+     numero = numero % 23;
+     letra='TRWAGMYFPDXBNJZSQVHLCKET';
+     letra=letra.substring(numero,numero+1);
+    if (letra!=letr.toUpperCase()) {
+       return 'Dni erroneo, la letra del NIF no se corresponde';
+     }else{
+       return 1
+     }
+  }else{
+     return 0
+   }
+}
+
+function validarFormatoFecha(campo) {
+      var RegExPattern = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+      if ((campo.match(RegExPattern)) && (campo!='')) {
+            return 1;
+      } else {
+            return 0;
+      }
+}
+
+function validarCadena(cadena){
+	var regexpNombre=/^[A-Za-zƒŠŒŽšœžŸÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèé êëìíîïðñòóôõöøùúûüýþÿ]*$/;
+	if (regexpNombre.test(cadena)){
+		return 1
+	}else{
+		return 0
+	}
+}
+
+function alerta(mensaje){
+$('#alerta').html(mensaje)	
+	type = $(this).attr('data-type');	
+	$('.overlay-container3').fadeIn(function() {		
+		window.setTimeout(function(){
+			$('.window-container3.zoomin').addClass('window-container-visible3');
+		}, 100);
+		
+	});
+}
+
+function cerrarAlerta(){
+	//$('#alerta').val("")
+	$('.overlay-container3').fadeOut().end().find('.window-container3').removeClass('window-container-visible3');
+}

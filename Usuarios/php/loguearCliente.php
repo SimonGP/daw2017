@@ -18,7 +18,7 @@ class ObjetoLoguin {
 }
 
 $nick = $_REQUEST['nick'];
-$password = $_REQUEST['passwd'];
+$password = md5($_REQUEST['passwd']);
 
 
 $loguear = new Usuarios();

@@ -60,8 +60,7 @@ function CargarRutaInicio(ruta){
 			$('#Tiempo').html(tiempo)
 			$('#Distancia').html(data[0].km)
 			$('#valoracion').html(data[0].valoracion)
-			$('#Dificultad').html(data[0].dificultad)	
-console.log(data[0].pdf)			
+			$('#Dificultad').html(data[0].dificultad)				
 			$('#PDF').attr("href",data[0].pdf)
 			$('#PDF').attr("download",(data[0].nombre))
 			$('#descripcion').html(data[0].consejos)
@@ -370,6 +369,7 @@ function reseteo(){
 function abrirComentario(){
 	$('#caja_comentario').val("")
 	type = $(this).attr('data-type');
+	
 	cuenta()
 	$('.overlay-container2').fadeIn(function() {		
 		window.setTimeout(function(){
@@ -477,3 +477,4 @@ function cambiarFecha(fecha){
 	console.log("fecha"+fecha2)
 	return fecha2
 }
+
