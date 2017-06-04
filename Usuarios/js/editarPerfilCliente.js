@@ -172,15 +172,15 @@ function mostrarHistorial(){
 				for(var i = 0; i < response.length; i++) {
 					if(i%2==0){
 						tabla+="<div class=''><div class='pares'><p><span class='ruta2'>"+response[i].nombreRuta+"</p><p><span class='nota'>Tu Nota: </span><span class='nota'>"
-						if(response[i].valor == -1){
-							tabla +="<input  name='"+response[i].idReservas+"' type='number' min='0' max='10' id='tamanioimput' step='.1'/><input class='userValor' id='"+response[i].idReservas+"' type='submit' value='Valorar'/></span></p></div>"
+						if(response[i].valor == 0){
+							tabla +="<input  name='"+response[i].idReservas+"' type='number' min='0' max='10' id='tamanioimput' step='.5'/><input class='userValor' id='"+response[i].idReservas+"' type='submit' value='Valorar'/></span></p></div>"
 						}else{
 							tabla +=response[i].valor+"</span></p></div>"
 						}						
 					}else{
 						tabla+="<div class=''><div class='impares'><p><span class='ruta2'>"+response[i].nombreRuta+"</p><p><span class='nota'>Tu Nota: </span><span class='nota'>"
-						if(response[i].valor == -1){
-							tabla +="<input  name='"+response[i].idReservas+"' type='number' min='0' max='10' id='tamanioimput' step='.1'/><input class='userValor' id='"+response[i].idReservas+"' type='submit' value='Valorar'/></span><span class='ruta2'>"+response[i].nombreRuta+"</p></div>"
+						if(response[i].valor == 0){
+							tabla +="<input  name='"+response[i].idReservas+"' type='number' min='0' max='10' id='tamanioimput' step='.5'/><input class='userValor' id='"+response[i].idReservas+"' type='submit' value='Valorar'/></span></p></div>"
 						}else{
 							tabla +=response[i].valor+"</span></p></div>"
 						}						

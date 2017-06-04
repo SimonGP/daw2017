@@ -15,7 +15,7 @@ function mostrarValoracionUsuarios(){
                 var enlace=""				
 				for( var x=0;x<data.length;x++){					
 					     
-                    enlace+="<fieldset class='perfil_ruta'><h4><p><a href='guias.html'>"+data[x].usuario+"</a></p><p>Valoración: "+data[x].km+"</p></h4></fieldset>"
+                    enlace+="<fieldset class='perfil_ruta'><h4><p><a href='guias.html'>"+data[x].usuario+"</a></p><p>Valoración: "+data[x].km+" Kms</p></h4></fieldset>"
 				}
 				
 				$('#usuarios_mas_valorados').html(enlace)

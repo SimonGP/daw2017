@@ -87,7 +87,7 @@ class Historial {
 	}
 	
 	function sumarKm($id){
-		$consulta = "select convert(sum(KM_RECORRIDOS), DECIMAL(4,2)) AS TOTAL from historial where ID_USUARIO=".$id;
+		$consulta = "select convert(sum(KM_RECORRIDOS), DECIMAL(10,2)) AS TOTAL from historial where ID_USUARIO=".$id;
 		if($respuesta = $this->conexion->query($consulta)) {
             return $respuesta;
         }else{
