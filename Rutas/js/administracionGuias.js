@@ -35,13 +35,10 @@ $(document).ready(function() {
             success: function(response){
                  var nombre = $('#nombreGuia').val();
     
-                //var nick = $("#nombreGuia").val();
-                //console.log("Este es el nick: " + nick);
-                console.log(response + "NICK: " + nombre);
+               
+               
 				var nombre = $('#nombreGuia').val()
-				console.log("Dentro del ajax: "+nombre)
-
-                console.log(response);
+				
             }
 
 
@@ -49,11 +46,11 @@ $(document).ready(function() {
     }); 
 
     $('#borrar').on('click',function() {
-        console.log("Estamos dentro");
+       
     }); 
 
     $('#modificar').on('click',function() {
-        console.log("Estamos dentro");
+       
     }); 
 
     function isImage(extension){
@@ -78,7 +75,7 @@ $(document).ready(function() {
             },
             success:  function (response) {
                 $("#listaUsuarios").innerHTML = response;
-                console.log(response + "ESTE");
+               
             }
         });
     }

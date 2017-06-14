@@ -58,7 +58,7 @@ function cargarReservas(){
 				tabla+="<div class='contenedor_reserva'><div class='titulo'><p class='no_reservas'>No Tienes reservas</p></div>"
 				tabla+="<div><p class'persona'>Anímate a realizar una ruta con Nosotros</p></div></div>"
 			}else{				
-				console.log(response)
+				
 			
 				for(var i = 0; i < response.length; i++) {
 					tabla+="<div class='contenedor_reserva'><div><a class='cancelar' href='#' data-type='zoomin'>X</a><input type='button' id='cancelarReserva' class='ocultar2' readOnly='true' name='cancelarReserva' value='" + response[i].idReservas + "'/></div><div class='titulo'><p><span class='fecha'>"+response[i].fecha+"</span><span class='ruta'>"+response[i].nombreRuta+"</p></div>"
@@ -68,7 +68,7 @@ function cargarReservas(){
 							tabla+="<div>"
 						var separarPersonas=separarFilas[x].split("#")						
 							if(x%2!=0){
-								console.log("par")
+								
 								tabla+="<div class='personaRes filaPar'>"+separarPersonas[0]+"</div></div>"
 							}else{
 								tabla+="<div class='personaRes'>"+separarPersonas[0]+"</div></div>"
@@ -101,7 +101,7 @@ function cargarReservas(){
 }
 
 function CancelarReserva(){
-	console.log("Dentro de calcelacion con id: " + id);
+	
 	var datos={
 		id:id
 	}
@@ -110,7 +110,7 @@ function CancelarReserva(){
 		data:datos,
 		type:  'post',				
 		success:  function (response) {
-			console.log("Eliminado")
+			
 			cerrarAlerta2()
 			cargarReservas()
 		}

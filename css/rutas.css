@@ -394,3 +394,7 @@ background: radial-gradient(center, ellipse cover,  rgba(127,127,127,0) 0%,rgba(
 .window-container-visible6{-webkit-transform:  scale(1); -moz-transform:  scale(1);
 -ms-transform:  scale(1); transform:  scale(1); opacity: 1;}
 .window-container6 p{text-align:center;}		
+#nuevo_articulo{
+	margin-left:0%;
+	width:100%;
+}

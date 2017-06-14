@@ -13,7 +13,7 @@
 		//pagina web
 		function nuevaReserva($id_ruta,$id_usuario,$num_personas,$fecha, $personas){
 			$mensaje="";
-			$consulta="insert into reservas (ID_RUTA, ID_USUARIO, NUM_PERSONAS, FECHA, PERSONAS) VALUES (".$id_ruta.",".$id_usuario.",".$num_personas.",'".$fecha."', '".$personas."')";
+			$consulta="insert into reservas (ID_RUTA, ID_USUARIO, NUM_PERSONAS, FECHA, PERSONAS, REALIZADA) VALUES (".$id_ruta.",".$id_usuario.",".$num_personas.",'".$fecha."', '".$personas."',0)";
 			if($resultado=$this->conexion->query($consulta)){
 				$mensaje="Reserva realizada";
 			}else{
@@ -73,6 +73,55 @@
 				}
 				
 			}
+		}
+		
+		function cargarHistorial(){
+			$consulta="select rutas.NOMBRE as RUTAS, reservas.FECHA from reservas join rutas on rutas.id = reservas.id_ruta where reservas.fecha < CURRENT_DATE";
+			if($resultado=$this->conexion->query($consulta)){
+				return $resultado;
+			}
+		}
+		
+		function mostrarHistorial(){
+			$consulta="select reservas.ID AS ID,rutas.NOMBRE AS RUTAS,FECHA,PERSONAS from reservas join rutas ON rutas.ID = RESERVAS.ID_RUTA  where RESERVAS.fecha>= CURDATE() group by rutas.NOMBRE  order by RESERVAS.fecha asc";
+			if($resultado=$this->conexion->query($consulta)){
+				return $resultado;
+			}
+		}
+		
+		function todasReservas(){
+			
+			$consulta="select reservas.ID AS ID,rutas.NOMBRE AS RUTAS,FECHA,PERSONAS from reservas join rutas ON rutas.ID = RESERVAS.ID_RUTA  where RESERVAS.fecha>= CURDATE() group by rutas.NOMBRE  order by RESERVAS.fecha asc";
+			if($resultado=$this->conexion->query($consulta)){
+				return $resultado;
+			}
+		
+		}
+		
+		function TodasReservasImprimir($ruta, $fecha){
+			
+			$consulta="select reservas.ID AS ID,rutas.NOMBRE AS RUTAS,FECHA,PERSONAS from reservas join rutas ON rutas.ID = RESERVAS.ID_RUTA where Rutas.nombre='$ruta' and fecha='$fecha' order by RESERVAS.fecha asc";
+			if($resultado=$this->conexion->query($consulta)){
+				return $resultado;
+			}
+		
+		}
+		
+		function pasarAHistorial($ruta, $fecha){
+			
+			$consulta="select reservas.ID AS ID,rutas.id AS RUTAS, rutas.KILOMETROS AS KM, FECHA,PERSONAS, ID_USUARIO as ID from reservas join rutas ON rutas.ID = RESERVAS.ID_RUTA where Rutas.nombre='$ruta' and fecha='$fecha' order by RESERVAS.fecha asc";
+			if($resultado=$this->conexion->query($consulta)){
+				return $resultado;
+			}
+		
+		}
+		
+		function activar($ruta, $fecha){
+			$consulta="update reservas REALIZADA = 1 where id_ruta=$ruta and fecha = $fecha";
+			if($resultado=$this->conexion->query($consulta)){
+				return $resultado;
+			}
+		
 		}
 	}
 	

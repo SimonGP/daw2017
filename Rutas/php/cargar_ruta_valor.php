@@ -2,6 +2,10 @@
 	require_once("clase_rutas.php");
 	$enlace=new rutas();
 	$ruta=$_POST['ruta'];
+	
+	if (empty($ruta)){
+	$ruta="Camino de Arrieros";
+	}
 
 	$datos=array();
 	$resultado=$enlace->seleccionarTodasLasRutasValoracion($ruta);

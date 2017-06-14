@@ -1,6 +1,6 @@
 function guardarId(){
 	var id = $(this).find('input').val()
-	console.log("id:"+id)
+	
 	localStorage.setItem('id', id)
 	
 }

@@ -151,6 +151,8 @@ class Usuarios{
 			return $resultado;
 		}
     }
+	
+	
 
 }
 

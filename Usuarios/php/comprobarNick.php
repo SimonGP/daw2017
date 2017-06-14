@@ -6,7 +6,7 @@
 	$dni=$_POST['dni'];
 		
 	$enlace = new usuarios();
-	$resultado=$enlace->comprobarNick($usuario,$correo,$nick);
+	$resultado=$enlace->comprobarNick($usuario,$correo,$dni);
 	echo $resultado;
 	
 	

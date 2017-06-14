@@ -66,7 +66,8 @@ function comprobarSession(){
                 
                 liRegistro.removeClass("mostrar");
                 liRegistro.addClass("ocultar");
-                    
+                    $('#opciones_guias').removeClass("oculto")	
+	$('#opciones_guias').addClass("mostrar")
                
                 desconectar.removeClass("ocultar");
                 desconectar.addClass("mostrar"); 
@@ -176,7 +177,8 @@ $(document).ready(function() {
 					liLogueo.removeClass("mostrar");
 					liLogueo.addClass("ocultar");
 						
-				   
+				   $('#opciones_guias').removeClass("oculto")	
+	$('#opciones_guias').addClass("mostrar")
 					
 					liRegistro.removeClass("mostrar");
 					liRegistro.addClass("ocultar");
@@ -306,7 +308,7 @@ $(document).ready(function() {
     $('#desconectar').on('click',function() {
        
         
-        console.log("desconectar");
+      
         
         $.ajax({
            
@@ -341,7 +343,8 @@ $(document).ready(function() {
                 liRegistro.removeClass("ocultar");
                 liRegistro.addClass("mostrar");
                     
-               
+               $('#opciones_guias').removeClass("mostrar")	
+	$('#opciones_guias').addClass("oculto")
                     
                 desconectar.removeClass("mostrar");
                 desconectar.addClass("ocultar"); 
@@ -356,7 +359,7 @@ $(document).ready(function() {
 });
 
 function ocultarTrasLogueo(nickResultado,correoResultado,perfilResultado){
-	console.log("su puta madre")
+	
 	var liLogueo = $("#liLogueo");
 	
 	var liRegistro = $("#liRegistro");
@@ -366,7 +369,7 @@ function ocultarTrasLogueo(nickResultado,correoResultado,perfilResultado){
 	
 	var nickLogueado = $("#nickLogueado");	
 	
-	if(nickResultado == "La rubia") {
+	if(perfilResultado == "administrador") {
 	nickLogueado.html(nickResultado);    
 		
 	botonAdmin.removeClass("ocultar");
@@ -388,8 +391,8 @@ function ocultarTrasLogueo(nickResultado,correoResultado,perfilResultado){
 	desconectar.removeClass("ocultar");
 	desconectar.addClass("mostrar");    
 		
-	}else if(nickResultado == "Elhoir" || nickResultado == "Lord Goyito" || nickResultado == "Mario DoubleG") {
-	 nickLogueado.html(nickResultado); 
+	}else if(perfilResultado == "guia") {
+	 
 	 botonAdmin.removeClass("mostrar");
 	botonAdmin.addClass("ocultar"); 
 $('#botonreserva').removeClass("oculto")
@@ -403,7 +406,8 @@ $('#botonreserva').removeClass("oculto")
 	liRegistro.removeClass("mostrar");
 	liRegistro.addClass("ocultar");
 		
-
+	$('#opciones_guias').removeClass("oculto")	
+	$('#opciones_guias').addClass("mostrar")
 		
 	desconectar.removeClass("ocultar");
 	desconectar.addClass("mostrar"); 
@@ -448,15 +452,15 @@ function validarTelefono(telefono){
 	  var expresionRegular2=/\s/;//<--- con esto vamos a validar que no tenga espacios en blanco
 	 
 	  if(telefono==''){
-		  console.log("dentro vacio")
+		  
 			resultado = 0
 		}
 	  else if(expresionRegular2.test(telefono)){	
-console.log("dentro espacion")		  
+	  
 			resultado = 0
 		}
 	  else if(expresionRegular1.test(telefono)){
-		  console.log("dentro numero")
+		  
 		  if(telefono.length== 9){
 			  resultado = 1
 		  }else{

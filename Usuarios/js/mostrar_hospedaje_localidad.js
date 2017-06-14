@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 
         var localidad = $('#listado_pueblos').val();
-         console.log(localidad)
+         
          if(localidad == 'Todos'){
              
              
@@ -46,7 +46,7 @@ $(document).ready(function() {
 
 function mostrar(){
 	var pueblo=$('#listado_pueblos').val()
-	console.log(pueblo)
+	
 		datos={
 			pueblo:pueblo
 		}

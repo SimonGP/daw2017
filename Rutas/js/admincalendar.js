@@ -74,13 +74,13 @@ function mostrarC(){
 		data:fecha,		
 		DataType:'Json',	
 		success: function(data){  
-			console.log("dentro")
+			
 			$('#fechas').html("")
 			if(data.length==0){
 				$('#fechas').html("")
 			}else{
 				var enlace="<fieldset><legend>Rutas en este Fecha</legend><table>"
-				console.log(data.length)
+				
 				for(var x=0;x<data.length;x++){
 					var fech=data[x].fecha.split("-")
 					var anio=fech[0]
@@ -179,7 +179,7 @@ $(document).ready(function(){
 			var dia=fechax[0]			
 			var fecha2=anio+'/'+mes+'/'+dia			
 			var ruta=$('#listado').val()
-			console.log("Guardar: "+fecha2)
+			
 			var encontrado=true
 			contador=0
 			while(encontrado){
@@ -199,7 +199,7 @@ $(document).ready(function(){
 					ruta:id,
 					fecha:fecha2
 				}
-				console.log(datos)
+				
 				$.ajax({
 					url: 'rutas/php/panel_calendario_registro.php',  
 					type: 'POST',					

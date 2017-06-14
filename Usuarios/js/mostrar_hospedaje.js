@@ -1,7 +1,7 @@
 var localidades=['Abadía','Aldeanueva del Camino','Baños de Montemayor','Gargantilla','Casas del Monte','Segura del Toro','Gargantilla','Hervás']
 
 function buscarLoc(local){
-	console.log("dentro de buscar")
+	
 	var resultado=0
 	for (var x=0;x<localidades.length;x++){
 		
@@ -81,7 +81,7 @@ $(document).ready(function(){
 
 
 function actualizar(){
-	console.log('dentro')
+	
 	var datos=$('#annadir input')
 	var id=datos[0].value
 	var nombre=datos[1].value
@@ -91,7 +91,7 @@ function actualizar(){
 	var email=datos[4].value
 	var web=datos[5].value
 	var local=buscarLoc(localidad)
-	console.log('topota, '+local)
+	
 	var envio={
 		id:id,
 		nombre:nombre,

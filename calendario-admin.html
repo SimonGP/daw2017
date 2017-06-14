@@ -1,11 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
-    <html>
+<html>
 
-        <head>
-        <link rel="stylesheet" href="css/estilos-v2.css">
-            <link rel="stylesheet" type="text/css" href="css/style.css"/>
+<head>
+	<link rel="stylesheet" href="css/estilos-v2.css">
             <meta name="author" content="" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <meta name="copyright" content="aw1516.org" />
@@ -14,34 +13,21 @@
             <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
             <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
             <script  src="Usuarios/js/usuariosCliente.js"></script>
+            <script  src="Rutas/js/visualizar-guias.js"></script>
             <script  src="Rutas/js/valoracion-rutas.js"></script>
-            <script  src="rutas/js/administracion.js"></script>
+            <script  src="rutas/js/admincalendar.js"></script>	
             <title>RUTAS</title>
 </head>
-        <script>
-			$.ajax({				
-					url: 'usuarios/php/clase_sessiones.php',
-					type: 'POST',
-					DataType:'Json',		
-					success: function(data){
-					console.log(data.perfil)
-						if(data.perfil!="administrador"){
-							window.location="index.html";
-						}
-					}
-			})
-		</script>
-
-        <body>
-		
-           <nav id="menu-top">
+    
+<body>
+<nav id="menu-top">
                  <div id="desc" class="ocultar" style='width:300px;float:right;color:white;'><form><p>Conectado como <a href='perfilUsuario.html' id='nickLogueado'></a> <input type='button' name='desconectar' id='desconectar' class='botonEspecial' value='Desconectar'/></p></form>
                 </div>
-                <li id="liLogueo" class="ocultar"><a href="#">Loguearse</a>
+                <li id="liLogueo" class="ocultar"><a href="#">LOGIN</a>
                     <ul id="ulLogueo" class="mostrar">
                         <li>
                             <form>
-                                <div>Nick:</div>
+                                <div>Usuario:</div>
                                 <div><input type='text' name='usuario' placeholder='Usuario' id='usuario'/></div>
                                 <div>Contraseña:</div>
                                 <div><input type='password' name='passwd' id="passwd" placeholder='Password'/></div>
@@ -53,7 +39,7 @@
                     </ul>
                 </li>
                
-                <li><a href="#" id="liRegistro" class="ocultar">Registrarse</a>
+                <li><a href="#" id="liRegistro" class="ocultar">REGISTRO</a>
                     <ul class="mostrar" id="ulRegistro">
                         <li>
                             <form id="insert" >
@@ -73,7 +59,7 @@
                         </li>
                     </ul>         
                 </li>
-            </nav>  
+            </nav> 
     
 <div id="centrar">  
 <header>
@@ -85,31 +71,49 @@
 			<li><a href="gestion.html">RUTAS</a></li>
 			<li><a href="hospedajes-admin.html">HOSPEDAJE</a></li>
 			<li><a href="guias-admin.html">GUIAS</a></li>
-            <li><a href="calendario-admin.html">CALENDARIO</a></li>
+             <li><a href="calendario-admin.html">CALENDARIO</a></li>
 		 </ul> 
 	</nav>
 
     
     <div id="div1">
     <img src="img/logo-rutas.png">
-	<aside style="display:none;">
-	</aside>
-	
-	<section id="mostrar_rutas">
+	</div>
+    <div class="cuerpo1">
+    <div class="cuerpo2">
+    <aside>
+        <h3>Rutas más valoradas</h3>
+        <div id="mas-valoradas"></div>
+        <h3>Usuarios con más Kilómetros</h3>
+        <div id="usuarios_mas_valorados"></div>
+    </aside>
+    
+	<section>
     <article>
-  
-        <button id="nuevo" class="reserva">Añadir nuevo</button>
-        <div id="mensaje2"></div>
         
+    <label>Fecha:</label>
+		<input type="text" name="calendario" id="datepicker" class="calendario-admin"/>
+        <br>
+        <br>
+		<div id="lista" class="no-margen"></div>
+		<div id="datos">
+		<span>Dificultad: </span><span id="dureza"></span></div>
+		<button id="guardar" class="reserva">Guardar</button>
+		<div id="mensaje"></div>
+		<!-- Se muestra la rutas tras selecionar una fecha -->
+		<div id="fechas"></div>
+		<!-- Se muestran todas las rutas -->
+		<div id="todas_fechas"></div>
     </article>
 	</section>
-    
        
-   
+    </div>
+    </div>
      <footer>
-    <p>RUTAS Ambroz S.A ©Copyright 2017 | Todos los derechos reservados.</p>
+    <p>Esta página web es un proyecto realizado por Juan, Simón y Mario para el 2º de DAW</p>
 	</footer>
-        <div class="overlay-container3">
+    </div>
+    <div class="overlay-container3">
 		<div class="window-container3 zoomin">
 			<div id="mensaje">
 				<p id="alerta"></p>
@@ -117,46 +121,7 @@
 			<span id="close3" class="button reserva">Cerrar</span>
 		</div>			
 	</div>	
-    </div>
-    <div class="overlay-container">
-		<div class="window-container zoomin">
-		<section id="nuevo_articulo">
-		
-			<label id="id">ID: <input type="text" name="id" readOnly="true"/></label>	<!-- Ocultar al añadir-->	
-			<label>Nombre: <input type="text" name="nombre"/></label>
-			<label>Kilometros: <input type="text" name="kilometros"/></label>
-			<label>Minutos: <input type="number" name="minutos"/></label>
-			<label>Localidad: <select name="localidad" id="localidad">
-				<option value="Abadía">Abadía</option>
-				<option value="Baños de Montemayor">Baños de Montemayor</option>
-				<option value="Aldeanueva del Camino">Aldeanueva del Camino</option>
-				<option value="Casas del Monte">Casas del Monte</option>
-				<option value="Segura del Toro">Segura del Toro</option>
-				<option value="Hervás">Hervás</option>
-				<option value="Gargantilla">Gargantilla</option>
-				<option value="La Garganta">La Garganta</option>
-			</select></label>
-			<label>Consejos: <textarea name="consejos" cols=40 rows=10></textarea></label>
-			<label>Dificultad: <select name="dificultad" id="dificultad">
-				<option value="Baja">Baja</option>
-				<option value="Media">Media</option>
-				<option value="Alta">Alta</option>
-			</select></label>
-			<label>Numero de reservas : <input type="number" name="maximo"/></label>
-			<label>Mapa: <input type="text" name="mapa"/></label>
-			<label id="pdf">Dirección PDF: <input type="text" name="pdf"/></label><!-- Ocultar al añadir-->	
-			<label id="valora">Valoracion: <input type="number" name="valoracion" min='0' max='10' step='0.1'></label><!-- Ocultar al añadir -->
-			<form enctype="multipart/form-data" class="formulario">
-			<label>Subir PDF</label>
-			<input name="archivo" type="file" id="imagen"/>
-			<input type="button" value="Registrar" class="reserva" id="registrar"/>
-			<input type="button" value="Modificar" class="reserva" id="actualizar"/>
-			</form>			
-			<p id="mensaje"></p><br>
-			<button id="cerrar" class="reserva">Cerrar</button>
-			</div>
-			</div>
-			
+    
 </body>
 
 </html>

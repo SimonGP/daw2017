@@ -12,10 +12,10 @@ class Historial {
         }
     }
     
-    function nuevoHistorial($idUsuario,$idRuta,$kilometros,$valorRuta) {
+    function nuevoHistorial($idUsuario,$idRuta,$kilometros) {
         $mensaje="";
         
-        $consulta="insert into historial (ID_USUARIO,ID_RUTA,KM_RECORRIDOS,VALOR_RUTA) values ($idUsuario,$idRuta,$kilometros,$valorRuta)";
+        $consulta="insert into historial (ID_USUARIO,ID_RUTA,KM_RECORRIDOS,VALOR_RUTA, FECHA) values ($idUsuario,$idRuta,$kilometros,0)";
         
         if($respuesta = $this->conexion->query($consulta)) {
             $mensaje="Se ha introducido un nuevo historial";
@@ -114,13 +114,6 @@ class Historial {
 	}
 
 }
-/*
-$enlace = new Historial();
-$ver = $enlace->guardarValoracion(1,5.5,'Camino de Arrieros');
-	while($fila = $ver->fetch_assoc()) {
 
-        $resultado = $fila['valor'];         
-    }
-	echo $resultado;*/
 
 ?>

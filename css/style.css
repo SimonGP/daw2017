@@ -118,4 +118,7 @@ input, textarea, select{
 		}		
 		
 		.reserva:hover{opacity: 1; right: 0; background-color:#74b138;}
-		
+		#nuevo_articulo{
+	left:0%;
+	width:100%;
+}

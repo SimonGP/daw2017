@@ -1,7 +1,7 @@
 $(document).ready(function() {
      $('#modificar').on('click',function() {
           var nick = $(this).parent().parent().children().children("#usuario").val();
-         console.log(nick);
+        
         var correo = $(this).parent().parent().children().children("#correo").val();
 
         var nombre = $(this).parent().parent().children().children("#nombre").val();
@@ -19,7 +19,7 @@ $(document).ready(function() {
          var nuevaPassword = $(this).parent().parent().children().children("#nuevaPassword").val();
          
           var enviarAjax = {"nick":nick,"correo":correo,"dni":dni,"nombre":nombre,"apellidos":apellidos,"fecna":fecna,"telefono":telefono,"password":password,"nuevaPassword":nuevaPassword};
-         console.log(enviarAjax.password + "ok");
+        
          $.ajax({
             data:  enviarAjax,
             url:   'Usuarios/php/modificarCliente.php',

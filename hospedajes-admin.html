@@ -4,8 +4,7 @@
     <html>
 
         <head>
-        <link rel="stylesheet" href="css/estilos-v2.css">
-            <link rel="stylesheet" type="text/css" href="css/style.css"/>
+            <link rel="stylesheet" href="css/estilos-v2.css">
             <meta name="author" content="" />
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <meta name="copyright" content="aw1516.org" />
@@ -13,27 +12,22 @@
             <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
             <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
             <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-            <script  src="Usuarios/js/usuariosCliente.js"></script>
+			<script  src="usuarios/js/adminhospedaje.js"></script>
             <script  src="Rutas/js/valoracion-rutas.js"></script>
-            <script  src="rutas/js/administracion.js"></script>
+            
+            
+        
+	    <link rel="stylesheet" href="rutas/js/jquery-ui.css">
+		<script  src="rutas/js/jquery.min.js"></script>
+        <script src="rutas/js/jquery-1.9.1.js"></script>
+        <script src="rutas/js/jquery-ui.js"></script>
+        
+        
+            
             <title>RUTAS</title>
-</head>
-        <script>
-			$.ajax({				
-					url: 'usuarios/php/clase_sessiones.php',
-					type: 'POST',
-					DataType:'Json',		
-					success: function(data){
-					console.log(data.perfil)
-						if(data.perfil!="administrador"){
-							window.location="index.html";
-						}
-					}
-			})
-		</script>
+        </head>
 
         <body>
-		
            <nav id="menu-top">
                  <div id="desc" class="ocultar" style='width:300px;float:right;color:white;'><form><p>Conectado como <a href='perfilUsuario.html' id='nickLogueado'></a> <input type='button' name='desconectar' id='desconectar' class='botonEspecial' value='Desconectar'/></p></form>
                 </div>
@@ -85,31 +79,97 @@
 			<li><a href="gestion.html">RUTAS</a></li>
 			<li><a href="hospedajes-admin.html">HOSPEDAJE</a></li>
 			<li><a href="guias-admin.html">GUIAS</a></li>
-            <li><a href="calendario-admin.html">CALENDARIO</a></li>
+             <li><a href="calendario-admin.html">CALENDARIO</a></li>
 		 </ul> 
 	</nav>
 
     
     <div id="div1">
     <img src="img/logo-rutas.png">
-	<aside style="display:none;">
-	</aside>
-	
-	<section id="mostrar_rutas">
-    <article>
-  
-        <button id="nuevo" class="reserva">Añadir nuevo</button>
-        <div id="mensaje2"></div>
+	</div>
+    <div class="cuerpo1">
+    <div class="cuerpo2">
+    <aside>
+    <form> 
+        <h3>Localidad</h3>
+		<select id="hospedaje">
+			<option selected>Todos</option>
+			<option>Abadía</option>
+			<option>Aldeanueva del Camino</option>
+			<option>Baños de Montemayor</option>
+			<option>Casas del monte</option>
+			<option>Gargantilla</option>
+			<option>Hervás</option>
+			<option>La Garganta</option>
+			<option>Segura del Toro</option>
+		</select>
+     <!--  <select id="listado_pueblos">
+    <option value="Todos">Todos</option>
+    <option value="Abadía">Abadía</option> 
+    <option value="Aldeanueva del Camino">Aldeanueva del Camino</option> 
+    <option value="Baños de Montemayor">Baños de Montemayor</option>
+    <option value="Gargantilla">Gargantilla</option> 
+    <option value="Casas del Monte">Casas del Monte</option> 
+    <option value="Segura del Toro">Segura del Toro</option>
+    <option value="La Garganta">La Garganta</option> 
+    <option value="Hervás">Hervás</option>
+</select>-->
+        </form>
+        <h3>Rutas más valoradas</h3>
+        <div id="mas-valoradas"></div>
+        <h3>Usuarios con más Kilómetros</h3>
+        <div id="usuarios_mas_valorados"></div>
         
+    </aside>
+    
+	<section id='ajuste'>
+	 <article>
+  <div id="annadir">
+  <div class="overlay-container">
+		<div class="window-container zoomin">
+		<label>ID: </label><br><input type="text" name="id"></input><br>
+		<label>Nombre: </label><br><input type="text" name="nombre"></input><br>
+        <label>Localidad:</label><br>
+			<select id="localidad">			
+				<option selected>Abadía</option>
+				<option>Aldeanueva del Camino</option>
+				<option>Baños de Montemayor</option>
+				<option>Casas del Monte</option>
+				<option>Gargantilla</option>
+				<option>Hervás</option>
+				<option>La Garganta</option>
+				<option>Segura del Toro</option>
+			</select><br>		
+		<label>Dirección: </label><br><input type="text" name="direccion"></input><br>
+		<label>Teléfonos: </label><br><input type="text" name="telefono"></input><br>
+		<label>Email: </label><br><input type="text" name="email"></input><br>
+		<label>URL: </label><br><input type="text" name="web"></input><br>
+		<button id="guardar" class="reserva">Guardar</button>
+		<button id="actualizar" class="reserva">Editar</button><br>
+		</div></div>
+	</div>
+            
+	
     </article>
 	</section>
-    
-       
+	<!-- fin del popup -->
+	<div id="mensaje"></div>
+	<section>
+		
+		<div><p>Listado de hospedajes</p></div>
+		<div id="mostrar"></div>
+	</section>
+	
    
+	</section>
+       
+    </div>
+    </div>
      <footer>
     <p>RUTAS Ambroz S.A ©Copyright 2017 | Todos los derechos reservados.</p>
 	</footer>
-        <div class="overlay-container3">
+    </div>
+    <div class="overlay-container3">
 		<div class="window-container3 zoomin">
 			<div id="mensaje">
 				<p id="alerta"></p>
@@ -117,46 +177,7 @@
 			<span id="close3" class="button reserva">Cerrar</span>
 		</div>			
 	</div>	
-    </div>
-    <div class="overlay-container">
-		<div class="window-container zoomin">
-		<section id="nuevo_articulo">
-		
-			<label id="id">ID: <input type="text" name="id" readOnly="true"/></label>	<!-- Ocultar al añadir-->	
-			<label>Nombre: <input type="text" name="nombre"/></label>
-			<label>Kilometros: <input type="text" name="kilometros"/></label>
-			<label>Minutos: <input type="number" name="minutos"/></label>
-			<label>Localidad: <select name="localidad" id="localidad">
-				<option value="Abadía">Abadía</option>
-				<option value="Baños de Montemayor">Baños de Montemayor</option>
-				<option value="Aldeanueva del Camino">Aldeanueva del Camino</option>
-				<option value="Casas del Monte">Casas del Monte</option>
-				<option value="Segura del Toro">Segura del Toro</option>
-				<option value="Hervás">Hervás</option>
-				<option value="Gargantilla">Gargantilla</option>
-				<option value="La Garganta">La Garganta</option>
-			</select></label>
-			<label>Consejos: <textarea name="consejos" cols=40 rows=10></textarea></label>
-			<label>Dificultad: <select name="dificultad" id="dificultad">
-				<option value="Baja">Baja</option>
-				<option value="Media">Media</option>
-				<option value="Alta">Alta</option>
-			</select></label>
-			<label>Numero de reservas : <input type="number" name="maximo"/></label>
-			<label>Mapa: <input type="text" name="mapa"/></label>
-			<label id="pdf">Dirección PDF: <input type="text" name="pdf"/></label><!-- Ocultar al añadir-->	
-			<label id="valora">Valoracion: <input type="number" name="valoracion" min='0' max='10' step='0.1'></label><!-- Ocultar al añadir -->
-			<form enctype="multipart/form-data" class="formulario">
-			<label>Subir PDF</label>
-			<input name="archivo" type="file" id="imagen"/>
-			<input type="button" value="Registrar" class="reserva" id="registrar"/>
-			<input type="button" value="Modificar" class="reserva" id="actualizar"/>
-			</form>			
-			<p id="mensaje"></p><br>
-			<button id="cerrar" class="reserva">Cerrar</button>
-			</div>
-			</div>
-			
+    
 </body>
 
 </html>

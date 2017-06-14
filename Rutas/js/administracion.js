@@ -50,7 +50,7 @@ $(document).ready(function(){
  
     //al enviar el formulario
     $('#registrar').click(function(){
-		if(comprobarNulos()){
+		
 			
 		
         //información del formulario
@@ -95,7 +95,7 @@ $(document).ready(function(){
 					archivo:archivo,
 					consejos:consejos
 				}
-				console.log(ruta)
+				
 				$.ajax({
 					url: 'rutas/php/panel_admin_registro.php',  
 					type: 'POST',					
@@ -115,15 +115,13 @@ $(document).ready(function(){
 				
 			}
         })
-		}else{
-			alerta("rellene todos los campos")
-		}
+		
     })
 	
 	$('#actualizar').click(function(){
 		
-		if(comprobarNulos()){
-			console.log("actualizar")
+		
+		
 			//información del formulario
 			var formData = new FormData($(".formulario")[0])       
 			//hacemos la petición ajax  
@@ -176,7 +174,7 @@ $(document).ready(function(){
 						dir_pdf:dir_pdf,
 						valoracion:valoracion
 					}
-					console.log(ruta)
+					
 					$.ajax({
 						url: 'rutas/php/panel_admin_modificar.php',  
 						type: 'POST',					
@@ -192,9 +190,7 @@ $(document).ready(function(){
 					
 				}
 			})
-			}else{
-			alerta("Rellene todos los campos")
-		}
+			
 		
 		})
 		
@@ -265,7 +261,7 @@ function cargarRutas(){
 				
 			enlace+="<tr><th>GESTIÓN</th><th>ID</th><th>NOMBRE</th><th>KM</th><th>MINUTOS</th><th>LOCALIDAD</th><th>DIFICULTAD</th><th>VALORACIÓN</th><th>PDF</th></tr>"
 				enlace+="<tr>"
-				enlace += "<td><button class='borrar reserva' id='"+data[x].id+"'>Borrar</button><button class='modificar reserva' id='"+data[x].id+"'>Modificar</button></td><td id='ocultar'>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].localidad+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"</tr><tr>"+"<td colspan=10>"/*data[x].mapa*/+"</td>"
+				enlace += "<td><button class='borrar reserva' id='"+data[x].id+"'>Borrar</button><button class='modificar reserva' id='"+data[x].id+"'>Modificar</button></td><td id='ocultar'>"+data[x].id+"</td>"+"<td>"+data[x].nombre+"</td>"+"<td>"+data[x].km+"</td>"+"<td>"+data[x].minutos+"</td>"+"<td>"+data[x].localidad+"</td>"+"<td>"+data[x].dificultad+"</td>"+"<td>"+data[x].valoracion+"</td>"+"<td>"+data[x].pdf+"</td>"+"</tr><tr>"+"<td colspan=10>"+data[x].mapa+"</td>"
 				enlace+="</tr>"
 			}
 			enlace+="</table>"
@@ -281,7 +277,7 @@ function cargarRutas(){
 }
 
 function modificar(){
-	console.log("modificar")
+	
 	$('#edit').click(envioModificar)
 	var id=$(this).attr('id')
 	var parametro={
@@ -294,7 +290,8 @@ function modificar(){
 		data:parametro,
 		DataType:'Json',		
 		success: function(data){  	
-		console.log("dentro")
+			var valor = data.valoracion
+			valor = valor.replace(",",".")
 			var enlace=$('#nuevo_articulo input')	
 			$('#nuevo_articulo textarea').val(data.consejos)	
 			$('#nuevo_articulo select').val(data.dificultad)			
@@ -305,7 +302,7 @@ function modificar(){
 			$('#nuevo_articulo input[name=maximo]').val(data.max_res)
 			$('#nuevo_articulo input[name=pdf]').val(data.pdf)
 			$('#nuevo_articulo input[name=mapa]').val(data.mapa)
-			$('#nuevo_articulo input[name=valoracion]').val(data.valoracion)
+			$('#nuevo_articulo input[name=valoracion]').val(valor)
 			$('#nuevo_articulo #localidad').val(data.localidad)
 			$('#id').removeClass('oculto')		
 			$('#pdf').removeClass('oculto')		
@@ -334,7 +331,7 @@ function modificar(){
 
 
 function borrar(){
-	console.log("BORRAR")
+	
 	var id=$(this).attr('id')
 	var parametro={
 		'id':id
@@ -413,7 +410,7 @@ function envioModificar(){
 				archivo:archivo,
 				consejos:consejos
 			}
-			console.log(ruta)
+			
 			$.ajax({
 				url: 'rutas/php/panel_admin_modificar.php',  
 				type: 'POST',					
@@ -449,53 +446,7 @@ function limpiarImputs(){
 	$('#nuevo_articulo #localidad').val("")
 }
 
-function comprobarNulos(){
-	var completo=false
-	var mensaje=""
-	var datos=$("#nuevo_articulo input")	
-	var nombre, kilometros, minutos, localidad, consejos, dificultad, num_reservas, direc, mapa
-	if(nombre=datos[1].value){
-		completo = true
-	}else{
-		completo = false
-	}	
-	if(nombre=datos[2].value){
-		completo = true
-	}else{
-		completo = false
-	}
-	if(nombre=datos[3].value){
-		completo = true
-	}else{
-		completo = false
-	}
-	if(nombre=datos[4].value){
-		completo = true
-	}else{
-		completo = false
-	}
-	if(nombre=datos[5].value){
-		completo = true
-	}else{
-		completo = false
-	}
-	if(nombre=datos[6].value){
-		completo = true
-	}else{
-		completo = false
-	}
-	if(nombre=datos[7].value){
-		completo = true
-	}else{
-		completo = false
-	}
-	if(nombre=datos[8].value){
-		completo = true
-	}else{
-		completo = false
-	}	
-	return completo
-}
+
 function alerta(mensaje){
 $('#alerta').html(mensaje)	
 	type = $(this).attr('data-type');	

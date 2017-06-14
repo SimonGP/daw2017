@@ -22,8 +22,12 @@
 		
 	}
 	$id=$_POST['id'];
+	
+	
+	//$id=19;
 	$enlace = new hospedaje();
 	$resultado=$enlace->unHospedaje($id);
+	//echo $resultado;
 	while($fila=$resultado->fetch_assoc()){
 		$des=explode("#",$fila['DESCRIPCION']);
 		$respuesta=new hospe($fila['ID'],$fila['NOMBRE'],$fila['LOCALIDAD'],$des[0],$des[1],$des[2],$fila['PAGINA_WEB']);

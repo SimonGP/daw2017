@@ -38,7 +38,7 @@
 		}
 		
 		function unHospedaje($id){
-			$consulta=" select hospedajes.ID, hospedajes.NOMBRE, hospedajes.DESCRIPCION, hospedajes.PAGINA_WEB, localidad.LOCALIDAD from hospedajes join localidad on localidad.ID_LOCALIDAD = hospedajes.LOCALIDAD where localidad.ID_LOCALIDAD=".$id;
+			$consulta=" select hospedajes.ID, hospedajes.NOMBRE, hospedajes.DESCRIPCION, hospedajes.PAGINA_WEB, localidad.LOCALIDAD from hospedajes join localidad on localidad.ID_LOCALIDAD = hospedajes.LOCALIDAD where hospedajes.ID=".$id;
 			if($resultado=$this->conexion->query($consulta)){
 				return $resultado;
 			}

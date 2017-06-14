@@ -15,7 +15,7 @@ function calcuPerfil(valor){
 function guardarPerfil(){
 	var id=$(this).attr('id')
 	var idPerfil = calcuPerfil($(this).parent().parent().children().children('#perfil').val())
-	console.log(idPerfil)
+	
 	var datos={
 		id:id,
 		perfil:idPerfil
@@ -26,7 +26,7 @@ function guardarPerfil(){
 		type: 'POST',
 		DataType:'Json',		
 		success: function(data){
-				console.log(data)
+				
 				cargarUser()
 		}
 	})
@@ -40,7 +40,7 @@ function cargarUser(){
 		DataType:'Json',		
 		success: function(data){
 			$('#lista').html("")
-			console.log(data)
+			
 			var enlace="<table><tr><th>Nick</td><perfil><th>acciones</th></tr>"
 			for (var x=0 ; x<data.length;x++){
 				enlace+="<tr>"
@@ -60,7 +60,7 @@ function cargarUser(){
 				}else{
 					enlace+="<option >Cliente</option>"
 				}
-				enlace+="</td><td><input id='"+data[x].id+"' type='submit' name='edit' value='Editar'/></td></tr>"
+				enlace+="</td><td><input id='"+data[x].id+"' type='submit' name='edit' value='Editar' class='reserva'/></td></tr>"
 			}
 			
 			$('#lista').html(enlace)

@@ -43,7 +43,7 @@ function cargarRutas(){
 
 // funcion para mostrar los datos de la ruta seleccionada
 function CargarRutaInicio(ruta){
-	console.log("ruta"+ruta)
+	
 	var session=localStorage.getItem("id")
 	
 	if (session!=0){
@@ -51,7 +51,7 @@ function CargarRutaInicio(ruta){
 		dato={
 			ruta:session			
 		}
-		console.log("session valor"+session)
+		
 		localStorage.setItem('id', 0)
 	}else{
 		dato={
@@ -236,7 +236,7 @@ $(document).ready(function(){
 	cargarRutas()		
 	$('#guardar_Reserva').click(guardarReserva)
 	$('#botonreserva').click(function() {
-		console.log($('#nombre_ruta').html())		
+			
 		if($('#rutero').hasClass('ocultar')){
 			$('#rutero').removeClass('ocultar')
 		$('#rutero').addClass('mostrar')}
@@ -285,7 +285,7 @@ function guardarReserva(){
 		type: 'POST',
 		DataType:'Json',		
 		success: function(data){
-			console.log(data)
+			
 			if (data==1){
 				alerta('Ya tienes una reserva realizada')
 			}else{
@@ -299,7 +299,7 @@ function guardarReserva(){
 				var acompanantes=$('.compi')
 				var dniacompa=$('.dnicompi')		
 				for (var x=0;x<acompanantes.length;x++){
-					mensaje+="<p>"+acompanantes[x].innerHTML+" <p>#</p>"+dniacompa[x].innerHTML+"</p>@"
+					mensaje+="<p>"+acompanantes[x].innerHTML+" </p>#<p>"+dniacompa[x].innerHTML+"</p>@"
 					contador++;
 				}					
 				datos={
@@ -308,7 +308,7 @@ function guardarReserva(){
 					id_ruta:id,
 					reserva:mensaje
 				}		
-				console.log("datos:"+datos)
+				
 				$.ajax({
 					url: 'rutas/php/guardarReserva.php',
 					data:datos,
@@ -340,19 +340,19 @@ function guardarReserva(){
 	
 
 function annadir(){
-	console.log("dentro añadir")
+	
 	if($('#nombre_rutero').val()== "" || $('#dni_rutero').val()==""){
 		alerta("Rellene todos los campos")
 	}else{		
-		console.log("dentro añadir 2")
+		
 		$('#listado_ruteros').removeClass("ocultar")
 		$('#listado_ruteros').addClass("mostrar")
 		
 		var nombre=$('#nombre_rutero').val()
 		var dni=$('#dni_rutero').val()		
 		var mensaje=$('#listado_ruteros').html()
-		console.log(nombre)
-console.log(dni)
+		
+
 		mensaje+="<p>Nombre: <span class='compi'>"+nombre+"</span></p><p>DNI: <span class='dnicompi'>"+dni+"</span></p><br><hr/>"
 		$('#listado_ruteros').html(mensaje)
 	}
@@ -462,7 +462,7 @@ function comprobarBotones(){
 		DataType:'Json',
 		success:function(data){
 			if(data.id==""){
-				console.log(data.id+"sessino cambiar botones")
+				
 				$('#botonreserva').removeClass("mostrar")
 				$('#botonreserva').addClass("oculto")
 				$('#nuevocomentario').removeClass("mostrar")
@@ -507,7 +507,7 @@ function cambiarFecha(fecha){
 	var mes=fechax[1]
 	var dia=fechax[0]			
 	var fecha2=anio+'/'+mes+'/'+dia
-	console.log("fecha"+fecha2)
+	
 	return fecha2
 }
 
